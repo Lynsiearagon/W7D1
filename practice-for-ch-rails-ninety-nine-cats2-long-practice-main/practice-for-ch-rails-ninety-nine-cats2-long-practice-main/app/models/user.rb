@@ -41,7 +41,20 @@ class User < ApplicationRecord
         end
     end
 
+    def reset_session_token!
+        self.generate_unique_session_token
+        self.save
+        self.session_token
+    end
+    
     private
+    
     attr_reader :password
+
+    def generate_unique_session_token
+        self.session_token = SecureRandom.urlsafe_base64
+    end
+
+  
 
 end
