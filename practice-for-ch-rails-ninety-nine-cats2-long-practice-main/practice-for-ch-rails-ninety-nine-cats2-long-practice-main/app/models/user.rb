@@ -31,7 +31,7 @@ class User < ApplicationRecord
         pw_object.is_password?(new_pw)
     end
 
-    def self.find_my_creds(username, password)
+    def self.find_by_creds(username, password)
         user = User.find_by(username: :username)
 
         if user && user.is_password?(password)
